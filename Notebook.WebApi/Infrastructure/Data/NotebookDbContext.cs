@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Notebook.WebApi.Data.Entities;
+using Notebook.WebApi.Infrastructure.Data.Entities;
 
-namespace Notebook.WebApi.Data;
+namespace Notebook.WebApi.Infrastructure.Data;
 
 public class NotebookDbContext : DbContext
 {

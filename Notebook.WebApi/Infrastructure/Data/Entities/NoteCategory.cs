@@ -1,4 +1,4 @@
-﻿namespace Notebook.WebApi.Data.Entities;
+﻿namespace Notebook.WebApi.Infrastructure.Data.Entities;
 
 public class NoteCategory
 {

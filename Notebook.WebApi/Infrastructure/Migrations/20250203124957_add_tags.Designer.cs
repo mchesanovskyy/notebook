@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Notebook.WebApi.Data;
+using Notebook.WebApi.Infrastructure.Data;
 
 #nullable disable
 
 namespace Notebook.WebApi.Migrations
 {
     [DbContext(typeof(NotebookDbContext))]
-    partial class NotebookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250203124957_add_tags")]
+    partial class add_tags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

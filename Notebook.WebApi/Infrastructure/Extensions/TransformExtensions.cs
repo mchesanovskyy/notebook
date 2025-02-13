@@ -1,7 +1,7 @@
-﻿using Notebook.WebApi.Data.Entities;
+﻿using Notebook.WebApi.Infrastructure.Data.Entities;
 using Notebook.WebApi.Models;
 
-namespace Notebook.WebApi.Controllers;
+namespace Notebook.WebApi.Infrastructure.Extensions;
 
 public static class TransformExtensions
 {

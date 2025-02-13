@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Notebook.WebApi.Data;
+using Notebook.WebApi.Infrastructure.Data;
+using Notebook.WebApi.Infrastructure.Extensions;
+using Notebook.WebApi.Infrastructure.Requests;
 using Notebook.WebApi.Models;
 
 namespace Notebook.WebApi.Controllers
@@ -15,10 +18,13 @@ namespace Notebook.WebApi.Controllers
     public class NoteCategoriesController : ControllerBase
     {
         private readonly NotebookDbContext _context;
-        
-        public NoteCategoriesController(NotebookDbContext context)
+        private readonly IMediator mediator;
+
+        public NoteCategoriesController(NotebookDbContext context,
+            IMediator mediator)
         {
             _context = context;
+            this.mediator = mediator;
         }
 
         [HttpGet]
@@ -70,12 +76,9 @@ namespace Notebook.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<NoteCategoryModelOut>> PostNoteCategory(NoteCategoryModelIn noteCategoryModel)
+        public Task<NoteCategoryModelOut> PostNoteCategory(NoteCategoryModelIn noteCategoryModel)
         {
-            var noteCategory = noteCategoryModel.Transform();
-            _context.NoteCategories.Add(noteCategory);
-            await _context.SaveChangesAsync();
-            return noteCategory.Transform();
+            return mediator.Send(new CreateNoteCategoryRequest(noteCategoryModel));
         }
 
         [HttpDelete("{id}")]
